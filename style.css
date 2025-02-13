@@ -1,0 +1,220 @@
+
+body {
+    background-color: #ffe5f0;
+    overflow: hidden; /* Para evitar que se muestren barras de desplazamiento */
+    margin: 0;
+    height: 100vh;
+}
+
+
+.Sol {
+    background: radial-gradient(circle, #f9e79f, #f1c40f);
+    width: 110px;
+    height: 120px;
+    margin: 15px;
+    border-radius: 20%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    animation: MoverSol 3s ease-in-out infinite;
+    box-shadow: 0 0 30px 10px rgba(249, 231, 159, 0.8); /* Sombra para resplandor */
+}
+
+.Sol::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(249, 231, 159, 0.4), transparent 70%);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: -1;
+    animation: Parpadear 2s ease-in-out infinite;
+}
+
+.Nube-Estatica {
+    width: 170px;
+    height: 90px;
+    background: white;
+    position: absolute;
+    border-radius: 40%;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.Nube-Estatica::before,
+.Nube-Estatica::after {
+    content: "";
+    position: absolute;
+    background: white;
+    border-radius: 40%;
+    box-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.3),
+        0 0 40px rgba(255, 255, 255, 0.6);
+}
+
+.Nube-Estatica::before {
+    width: 100px;
+    height: 80px;
+    top: -40px;
+    left: 20px;
+}
+
+.Nube-Estatica::after {
+    width: 60px;
+    height: 60px;
+    top: -30px;
+    right: 20px;
+}
+
+/* Posiciones y tamaños para las nubes estáticas */
+.Nube1 {
+    top: 10%;
+    left: 10%;
+    width: 200px;
+    height: 100px;
+}
+
+.Nube2 {
+    top: 5%;
+    left: 50%;
+    width: 180px;
+    height: 90px;
+}
+
+.Nube3 {
+    top: 15%;
+    right: 10%;
+    width: 220px;
+    height: 110px;
+}
+
+.Nubes {
+    background-color: white;
+    width: 100px;
+    height: 100px;
+    border-radius: 40%;
+    position: absolute;
+}
+
+.Nubes-Izquierda {
+    top: 20%;
+    left: -100px; /* Comienza fuera de la pantalla */
+    animation: moverNubeIzquierda 10s linear infinite;
+    z-index: -1;
+}
+
+.Nubes-Izquierda-abajo {
+    top: 50%;
+    left: -100px; /* Comienza fuera de la pantalla */
+    animation: moverNubeIzquierda 15s linear infinite;
+    z-index: -1;
+}
+
+.Nubes-Derecha {
+    top: 30%;
+    right: -100px; /* Comienza fuera de la pantalla */
+    animation: moverNubeDerecha 12s linear infinite;
+    z-index: -1;
+}
+
+.Nubes-Derecha-abajo {
+    top: 60%;
+    right: -100px; /* Comienza fuera de la pantalla */
+    animation: moverNubeDerecha 18s linear infinite;
+    z-index: -1;
+}
+
+.Imagen-Ositos {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+    position: relative; /* Añadir posición relativa para contener la imagen absoluta */
+}
+.PresionadoNo {
+    display: flex; /* Activa Flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    position: absolute; /* Permite posicionarlo en relación al contenedor */
+    top: 30%; /* Mueve el elemento al 50% de la altura del contenedor */
+    left: 50%; /* Mueve el elemento al 50% del ancho del contenedor */
+    transform: translate(-50%, -50%); /* Ajusta la posición para centrarlo */
+    visibility: hidden; /* Ocultar inicialmente */
+    z-index: 1; /* Asegurar que esté por encima de otros elementos */
+}
+
+
+.texto
+{
+    display:flex;
+    justify-content: center;
+    font-size: 30px;
+    font-family: "Sour Gummy", serif;
+}
+
+.Contenedor-Botones {
+    display: flex; /* Activa Flexbox */
+    justify-content: center; /* Centra los botones horizontalmente */
+    gap: 20px; /* Espacio entre los botones */
+    margin-top: 20px; /* Espacio arriba del contenedor */
+    position: relative;
+}
+
+
+.Botones input {
+    font-family: "Sour Gummy", serif; /* Aplica la fuente */
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ff6f61;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100px; /* Ancho fijo para ambos botones */
+    text-align: center; /* Centra el texto dentro del botón */
+}
+.Botones input:hover {
+    background-color: #ff3b2f; /* Cambia el color al pasar el mouse */
+}
+
+
+@keyframes moverNubeIzquierda {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(100vw + 100px)); /* Mueve la nube a la derecha */
+    }
+}
+
+@keyframes moverNubeDerecha {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-100vw - 100px)); /* Mueve la nube a la izquierda */
+    }
+}
+
+@keyframes MoverSol {
+    0% {
+        transform: translateY(0) scale(1); /* Posición inicial */
+    }
+    50% {
+        transform: translateY(15px) scale(1.1); /* Mueve y agranda */
+    }
+    100% {
+        transform: translateY(0) scale(1); /* Vuelve a la posición inicial */
+    }
+}
+
+@keyframes Parpadear {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.4;
+    }
+}
